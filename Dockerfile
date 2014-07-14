@@ -25,5 +25,7 @@ run ln -s /home/docker/proj/supervisor-app.conf /etc/supervisor/conf.d/
 # run pip install
 run pip install -r /home/docker/proj/requirements/docker.txt
 
+ENV ENV_SETTINGS docker
+
 expose 80
-# cmd ["supervisord", "-n"]
+cmd /bin/bash /home/docker/proj/prepare_server.sh

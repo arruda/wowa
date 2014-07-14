@@ -24,7 +24,6 @@ DATABASES = {
 
 MORE_INSTALLED_APPS = (
     'debug_toolbar',
-    'uwsgi',
 )
 
 #settings this for debug tools
