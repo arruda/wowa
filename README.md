@@ -5,7 +5,7 @@ wowa
 About this:
 -----------------------------------
 
-WOWA is a simple aplication that uses the WOW API to getter info about the auction house price for some items.
+WOWA is a simple aplication that uses the WOW API to get info about the auction house price for some items.
 
 
 LICENSE
