@@ -17,6 +17,8 @@ and then run `run_docker.sh` to run the container in the port 8000.
 
 **obs**: The docker image uses supervisord, nginx and uwsgi to run the app.
 
+**obs2**: admin user/pass (root/root)
+
 LICENSE
 =============
 This software is distributed using MIT license, see LICENSE file for more details.
