@@ -6,3 +6,10 @@ django-annoying==0.7.7
 South==0.8.2
 django-h5bp==0.3.4
 PyYAML==3.11
+
+#djangi-allauth reqs
+requests==2.2.1
+oauthlib==0.6.1
+python-openid==2.2.5
+requests-oauthlib==0.4.0
+django-allauth==0.16.1

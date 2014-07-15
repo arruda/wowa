@@ -14,10 +14,12 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'django_h5bp',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 #apps
 
 
 #deploy
 
 )
-

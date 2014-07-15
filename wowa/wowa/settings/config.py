@@ -78,12 +78,17 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 
     #others
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 
 )
 
 AUTHENTICATION_BACKENDS = (
-        #'user_backends.email_username.EmailOrUsernameModelBackend',
-        'django.contrib.auth.backends.ModelBackend',
+    #'user_backends.email_username.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -91,3 +96,6 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
