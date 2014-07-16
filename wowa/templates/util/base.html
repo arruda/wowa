@@ -20,6 +20,14 @@
 {% block 'js-imports' %}
 {% endblock %}
 
+{% block navbar-right %}
+<div class="nav navbar-right">
+  <ul class="nav navbar-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="{% url 'account_signup' %}">Sign In</a></li>
+  </ul>
+</div>
+{% endblock %}
 
 
 {% block main-jumbotron %}
