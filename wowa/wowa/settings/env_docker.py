@@ -7,7 +7,7 @@ SERVE_MEDIA = True
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'wowadb',
+#         'NAME': 'wowa_db',
 #         'USER': 'wowa_u',
 #         'PASSWORD': 'wowa_u',
 #         'HOST': '127.0.0.1',
