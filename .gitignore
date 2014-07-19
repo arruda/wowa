@@ -43,4 +43,4 @@ wowa/static_root/*
 
 docs/_build/*
 docs/_static/*
-run/*
+.nginx/log/*
