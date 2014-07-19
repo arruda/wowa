@@ -34,7 +34,10 @@ It uses a PostgreSql docker, that runs on port 5432 (5432 on host)
 ### wowaapp
 A container that runs the app with gunicorn on port 8000 (8001 on host)
 It is linked to wowadb to accesses the DB.
-Volume: ./ -> /home/docker/proj
+
+Volume:
+
+./ -> /home/docker/proj
 
 ###wowanginx
 A container that runs nginx on port 80 (8000 on host) and is linked to wowaapp to proxy_pass to gunicorn.
