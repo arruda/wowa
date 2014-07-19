@@ -37,7 +37,7 @@ It is linked to wowadb to accesses the DB.
 
 Volume:
 
-./ -> /home/docker/proj
+* ./ -> /home/docker/proj
 
 ###wowanginx
 A container that runs nginx on port 80 (8000 on host) and is linked to wowaapp to proxy_pass to gunicorn.
