@@ -7,7 +7,8 @@ RUN apt-get -qq -y update
 RUN apt-get install -y build-essential git-core
 RUN apt-get install -y python python-dev python-setuptools
 RUN apt-get install -y nginx supervisor
-RUN easy_install pip
+RUN apt-get install -y python-pip
+
 
 # install nginx
 RUN apt-get install -y python-software-properties
