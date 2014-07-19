@@ -10,6 +10,7 @@ DJANGO_SETTINGS_MODULE=wowa.settings             # which settings file should Dj
 DJANGO_WSGI_MODULE=wowa.wsgi                     # WSGI module name
 
 echo "Starting $NAME as `whoami`"
+echo $ENV_SETTINGS
 
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
@@ -23,7 +24,6 @@ test -d $RUNDIR || mkdir -p $RUNDIR
 exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
-  --log-level=debug
-# \
+  --log-level=debug \
+  --bind=unix:$SOCKFILE
 #  --user=$USER --group=$GROUP \
-#  --bind=unix:$SOCKFILE
