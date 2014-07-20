@@ -29,7 +29,7 @@ Dockers
 There are 3 containers: wowadb, wowaapp and wowanginx.
 
 ### wowadb
-It uses a PostgreSql docker, that runs on port 5432 (5432 on host)
+It uses a PostgreSql docker, that runs on port 5432 (5434 on host)
 
 ### wowaapp
 A container that runs the app with gunicorn on port 8000 (8001 on host)
