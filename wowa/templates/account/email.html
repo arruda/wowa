@@ -8,7 +8,7 @@
 
 {% block account_nav_email %}active{% endblock %}
 
-{% block main-container %}
+{% block account_content %}
 
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated to your account:' %}</p>
@@ -76,9 +76,7 @@
 
 {% endblock %}
 
-
-{% block extra_body %}
-<script type="text/javascript">
+{% block js-onpage %}
 $(function(){
 $("button[name='action_remove']").click(function(){
 if (confirm("{% trans 'Do you really want to remove the selected e-mail address?' %}")) {
@@ -87,5 +85,4 @@ return true;
 return false;
 });
 });
-</script>
 {% endblock %}
