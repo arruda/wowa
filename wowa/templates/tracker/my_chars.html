@@ -14,7 +14,11 @@
     {% for character in characters %}
         <div class="col-lg-12">
           <h3>{{ character }}</h3>
-          <p><a class="btn btn-default" href="#">{% trans "Delete" %}</a></p>
+          <form action="#" method="POST">
+            {% csrf_token %}
+
+            <button class="btn btn-default" type="submit">{% trans 'Delete' %}</button>
+          </form>
         </div>
 
     {% endfor %}
