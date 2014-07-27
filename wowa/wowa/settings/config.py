@@ -19,8 +19,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Login/Logout URL
-LOGIN_URL = '/login/'
-LOGOUT_URL = '/logout/'
+LOGIN_URL = '/accounts/login'
+LOGOUT_URL = '/accounts/logout'
 LOGIN_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'wowa.urls'

@@ -46,10 +46,10 @@
   <ul class="nav navbar-nav">
     {% if request.user.is_authenticated %}
 
-    <li><a href="{% url 'account_login' %}">{% user_display user %}</a></li>
+    <li><a href="{% url 'profile' %}">{% user_display user %}</a></li>
     <li><span ><a class="btn btn-success sgin_bt_header" href="{% url 'account_logout' %}">Sign Out</a></span></li>
     {% else %}
-    <li><span ><a class="btn btn-success sgin_bt_header" href="{% url 'account_login' %}">Sign In</a></span></li>
+    <li><span ><a class="btn btn-success sgin_bt_header" href="{% url 'account_signup' %}">Sign Up</a></span></li>
 
     {% endif %}
   </ul>
@@ -58,6 +58,18 @@
 
 
 {% block main-jumbotron %}
+
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+    {% for message in messages %}
+    <li>{{message}}</li>
+    {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
 {% endblock %}
 
 {% block main-container %}
