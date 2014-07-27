@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 from django.contrib import admin
 
+from .models import Item
 
 
-
-#admin.site.register(SomeModel, admin.ModelAdmin)
+admin.site.register(Item, admin.ModelAdmin)

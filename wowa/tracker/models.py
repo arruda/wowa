@@ -21,3 +21,10 @@ class Item(models.Model):
 
     class Meta:
         app_label = 'tracker'
+
+    def __unicode__(self):
+
+        if self.name is None:
+            return self.name
+        else:
+            return "#" + str(self.b_id)
