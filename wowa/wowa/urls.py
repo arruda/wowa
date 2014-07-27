@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.views.generic import TemplateView
 
+from django.contrib.auth.decorators import login_required
+
 from django.contrib import admin
 
 
@@ -12,7 +14,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='index'),
     (r'^accounts/', include('allauth.urls')),
-    url(r'^profile/$', TemplateView.as_view(template_name="account/my_profile.html"), name='profile'),
+    url(r'^profile/$', login_required(TemplateView.as_view(template_name="account/my_profile.html")), name='profile'),
+    url(r'^tracker/', include('tracker.urls', namespace='tracker', app_name='tracker')),
+
 
 )
 

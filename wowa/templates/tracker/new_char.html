@@ -1,0 +1,18 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap %}
+
+{% block page-title %}{{ block.super }} | {% trans "New Character" %}{% endblock %}
+
+
+{% block main-container %}
+<form method="POST" action="{% url 'tracker:new_char' %}">
+  {% csrf_token %}
+  {{ form|bootstrap }}
+
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit">{% trans "Create" %}</button>
+  </div>
+</form>
+{% endblock %}

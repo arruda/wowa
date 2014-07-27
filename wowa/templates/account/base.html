@@ -8,6 +8,9 @@
 <h1>{% trans 'My Account' %}</h1>
 
 <ul class="nav nav-tabs">
+  <li class="{% block account_nav_my_chars %}{% endblock %}">
+    <a href="{% url 'tracker:new_char' %}">{% trans 'My Characters' %}</a>
+  </li>
   <li class="{% block account_nav_email %}{% endblock %}">
     <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>
   </li>
