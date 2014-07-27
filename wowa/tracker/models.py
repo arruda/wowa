@@ -19,7 +19,7 @@ class Item(models.Model):
     b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
     name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
 
-    users = models.ManyToManyField('auth.User', related_name=u"Tracked Item", blank=True, null=True)
+    users = models.ManyToManyField('auth.User', related_name=u"Items", blank=True, null=True)
 
     class Meta:
         app_label = 'tracker'
@@ -30,3 +30,21 @@ class Item(models.Model):
             return self.name
         else:
             return "#" + str(self.b_id)
+
+
+class Character(models.Model):
+    """
+    An wow character
+    """
+
+    name = models.CharField(u"Character Name", max_length=350, blank=False, null=True)
+    realm = models.CharField(u"Realm", max_length=350, blank=False, null=True)
+
+    users = models.ManyToManyField('auth.User', related_name=u"Characters", blank=True, null=True)
+
+    class Meta:
+        app_label = 'tracker'
+
+    def __unicode__(self):
+
+        return self.realm + "/" + self.name
