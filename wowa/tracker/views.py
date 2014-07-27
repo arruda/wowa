@@ -26,6 +26,13 @@ def tracked_items(request):
 
 
 @login_required
+@render_to('tracker/my_chars.html')
+def my_chars(request):
+    characters = request.user.characters.all()
+    return {'characters': characters}
+
+
+@login_required
 @render_to('tracker/new_char.html')
 def new_char(request):
     "create a character for the logged user"
@@ -43,7 +50,7 @@ def new_char(request):
                                       'tracker/messages/char_created.txt',
                                       {'character': new_char})
 
-            return redirect('profile')
+            return redirect('tracker:my_chars')
     else:
         form = CharacterForm()
     return locals()

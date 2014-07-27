@@ -46,7 +46,7 @@
   <ul class="nav navbar-nav">
     {% if request.user.is_authenticated %}
 
-    <li><a href="{% url 'profile' %}">{% user_display user %}</a></li>
+    <li><a href="{% url 'tracker:my_chars' %}">{% user_display user %}</a></li>
     <li><span ><a class="btn btn-success sgin_bt_header" href="{% url 'account_logout' %}">Sign Out</a></span></li>
     {% else %}
     <li><span ><a class="btn btn-success sgin_bt_header" href="{% url 'account_signup' %}">Sign Up</a></span></li>

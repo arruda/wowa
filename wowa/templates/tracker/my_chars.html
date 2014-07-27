@@ -4,18 +4,24 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block page-title %}{{ block.super }} | {% trans "Account" %}{% endblock %}
+{% block page-title %}{{ block.super }} | {% trans "My Characters" %}{% endblock %}
 
 {% block account_content %}
     <h1>{% trans "My Characters" %}</h1>
 
 <div class="row">
-    {% for character in user.Characters.all %}
+    {% for character in characters %}
         <div class="col-lg-12">
           <h3>{{ character }}</h3>
           <p><a class="btn btn-default" href="#">{% trans "Delete" %}</a></p>
         </div>
 
     {% endfor %}
+</div>
+<hr/>
+<div class="row">
+    <div class="col-lg-12">
+            <a class="btn btn-success" href="{% url 'tracker:new_char' %}">New Character</a>
+    </div>
 </div>
 {% endblock %}
