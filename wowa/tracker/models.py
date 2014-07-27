@@ -11,27 +11,6 @@
 from django.db import models
 
 
-class Item(models.Model):
-    """
-    Represents a Item that is tracked
-    """
-
-    b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
-    name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
-
-    users = models.ManyToManyField('auth.User', related_name=u"Items", blank=True, null=True)
-
-    class Meta:
-        app_label = 'tracker'
-
-    def __unicode__(self):
-
-        if self.name is None:
-            return self.name
-        else:
-            return "#" + str(self.b_id)
-
-
 class Character(models.Model):
     """
     An wow character
@@ -48,3 +27,25 @@ class Character(models.Model):
     def __unicode__(self):
 
         return self.realm + "/" + self.name
+
+
+class Item(models.Model):
+    """
+    Represents a Item that is tracked
+    """
+
+    b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
+    name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
+
+    characters = models.ManyToManyField(Character, related_name=u"Items", blank=True, null=True)
+
+    class Meta:
+        app_label = 'tracker'
+
+    def __unicode__(self):
+
+        if self.name is None:
+            return self.name
+        else:
+            return "#" + str(self.b_id)
+

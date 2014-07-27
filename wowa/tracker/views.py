@@ -24,6 +24,7 @@ from .forms import CharacterForm
 @login_required
 @render_to('tracker/my_chars.html')
 def my_chars(request):
+    "list all characters for a user"
     characters = request.user.characters.all()
     return {'characters': characters}
 

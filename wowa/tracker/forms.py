@@ -15,7 +15,7 @@ from .models import Character
 
 class CharacterForm(forms.ModelForm):
     """
-    Form para criação de um novo character de um determinado realm para um usuario
+    Form for the creation of a Character for a user
     """
 
     class Meta:
