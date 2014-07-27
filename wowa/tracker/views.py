@@ -21,10 +21,6 @@ from .models import Character
 from .forms import CharacterForm
 
 
-def tracked_items(request):
-    pass
-
-
 @login_required
 @render_to('tracker/my_chars.html')
 def my_chars(request):
@@ -54,3 +50,21 @@ def new_char(request):
     else:
         form = CharacterForm()
     return locals()
+
+
+@login_required
+@render_to('tracker/my_chars.html')
+def rm_char(request, char_id):
+    "rm a character for the logged user"
+    character = get_object_or_404(Character, pk=char_id)
+
+    if request.method == "POST":
+
+        if character.user.pk is request.user.pk:
+            character.delete()
+            get_adapter().add_message(request,
+                                      messages.SUCCESS,
+                                      'tracker/messages/char_removed.txt',
+                                      {'character': character})
+
+    return redirect('tracker:my_chars')

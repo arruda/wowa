@@ -14,10 +14,10 @@
     {% for character in characters %}
         <div class="col-lg-12">
           <h3>{{ character }}</h3>
-          <form action="#" method="POST">
+          <form action="{% url 'tracker:rm_char' character.pk %}" method="POST">
             {% csrf_token %}
 
-            <button class="btn btn-default" type="submit">{% trans 'Delete' %}</button>
+            <button class="btn btn-default" name='action_remove' type="submit">{% trans 'Delete' %}</button>
           </form>
         </div>
 
@@ -29,4 +29,15 @@
             <a class="btn btn-success" href="{% url 'tracker:new_char' %}">New Character</a>
     </div>
 </div>
+{% endblock %}
+
+{% block js-onpage %}
+$(function(){
+$("button[name='action_remove']").click(function(){
+if (confirm("{% trans 'Do you really want to remove this character?' %}")) {
+return true;
+}
+return false;
+});
+});
 {% endblock %}
