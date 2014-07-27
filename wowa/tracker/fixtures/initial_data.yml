@@ -1,0 +1,3 @@
+- fields: {name: Cloudfuzzy, realm: Azralon, user: 1}
+  model: tracker.character
+  pk: 1

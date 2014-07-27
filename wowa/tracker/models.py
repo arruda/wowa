@@ -48,4 +48,3 @@ class Item(models.Model):
             return self.name
         else:
             return "#" + str(self.b_id)
-
