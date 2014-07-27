@@ -19,8 +19,6 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 #apps
-
-
-#deploy
+    'tracker',
 
 )
