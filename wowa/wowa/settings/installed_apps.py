@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'model_utils',
     'debug_toolbar',
     'django_h5bp',
+    'bootstrapform',
 
     'allauth',
     'allauth.account',
