@@ -69,3 +69,24 @@ def rm_char(request, char_id):
                                       {'character': character})
 
     return redirect('tracker:my_chars')
+
+
+
+@login_required
+@render_to('tracker/tracked_items.html')
+def rm_char(request):
+    "list all tracked items for this"
+    character = get_object_or_404(Character, pk=char_id)
+
+    if request.method == "POST":
+
+        if character.user.pk is request.user.pk:
+            character.delete()
+            get_adapter().add_message(request,
+                                      messages.SUCCESS,
+                                      'tracker/messages/char_removed.txt',
+                                      {'character': character})
+
+    return redirect('tracker:my_chars')
+
+
