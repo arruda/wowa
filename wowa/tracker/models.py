@@ -19,6 +19,8 @@ class Item(models.Model):
     b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
     name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
 
+    users = models.ManyToManyField('auth.User', related_name=u"Tracked Item", blank=True, null=True)
+
     class Meta:
         app_label = 'tracker'
 
