@@ -9,6 +9,7 @@
 """
 from __future__ import absolute_import
 
+from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
@@ -17,7 +18,7 @@ from annoying.decorators import render_to
 
 from allauth.account.adapter import get_adapter
 
-from .models import Character
+from .models import Character, Item
 from .forms import CharacterForm
 
 
@@ -71,22 +72,20 @@ def rm_char(request, char_id):
     return redirect('tracker:my_chars')
 
 
-
 @login_required
 @render_to('tracker/tracked_items.html')
-def rm_char(request):
-    "list all tracked items for this"
-    character = get_object_or_404(Character, pk=char_id)
+def tracked_items(request):
+    "list all tracked items for this user"
 
-    if request.method == "POST":
+    chars = request.user.characters.all()
 
-        if character.user.pk is request.user.pk:
-            character.delete()
-            get_adapter().add_message(request,
-                                      messages.SUCCESS,
-                                      'tracker/messages/char_removed.txt',
-                                      {'character': character})
+    #import pdb;pdb.set_trace()
+    items_ids = []
 
-    return redirect('tracker:my_chars')
+    for c in chars:
+        ids = c.items.all().values_list('pk', flat=True)
+        items_ids.extend(ids)
 
+    items = Item.objects.filter(pk__in=items_ids)
 
+    return {'items': items}

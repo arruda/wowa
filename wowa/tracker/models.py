@@ -37,7 +37,7 @@ class Item(models.Model):
     b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
     name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
 
-    characters = models.ManyToManyField(Character, related_name=u"Items", blank=True, null=True)
+    characters = models.ManyToManyField(Character, related_name=u"items", blank=True, null=True)
 
     class Meta:
         app_label = 'tracker'
@@ -45,6 +45,6 @@ class Item(models.Model):
     def __unicode__(self):
 
         if self.name is None:
-            return self.name
-        else:
             return "#" + str(self.b_id)
+        else:
+            return self.name + " (" + "#" + str(self.b_id) + ")"

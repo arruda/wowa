@@ -1,2 +1,23 @@
 {% extends "util/base.html" %}
 
+{% load i18n %}
+
+{% block page-title %}{{ block.super }} | {% trans "Tracked Items" %}{% endblock %}
+
+{% block main-container %}
+
+    <h1>{% trans "Tracked Items" %}</h1>
+
+    {% for item in items %}
+        <div class="row">
+            <div class="col-lg-12">
+              <h3>{{ item }}</h3>
+              <form action="#" method="POST">
+                {% csrf_token %}
+
+                <button class="btn btn-default" name='action_remove' type="submit">{% trans 'Delete' %}</button>
+              </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

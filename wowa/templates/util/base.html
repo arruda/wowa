@@ -35,7 +35,7 @@
 {% endblock %}
 
 {% block navbar-nav %}
-<li class="active"><a href="#tracked">Tracked Items</a></li>
+<li class="active"><a href="{% url 'tracker:tracked_items' %}">Tracked Items</a></li>
 <li><a href="#search">Search Item</a></li>
 {% endblock %}
 
