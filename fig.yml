@@ -1,0 +1,23 @@
+wowadb:
+  build: .pgserver
+  ports:
+    - "5434:5432"
+wowaapp:
+  build: .
+  volumes:
+    - .:/home/docker/proj
+  ports:
+    - "8001:8000"
+  links:
+    - wowadb:db
+wowanginx:
+  build: .nginx
+  ports:
+    - "8000:80"
+  links:
+    - wowaapp:app
+  volumes:
+    - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
+    - ./.nginx/log:/var/log/nginx
+    - ./wowa/static_root:/data/static
+    - ./wowa/media:/data/media

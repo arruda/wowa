@@ -10,16 +10,16 @@ WOWA is a simple aplication that uses the WOW API to get info about the auction 
 Runnnig:
 --------
 
-Use docker to run this.
+Use docker and fig to run this.
 
-So, after installing docker, just use the scripts `build_docker.sh` to build the docker image.
-After that run the cmd:
+So, after installing docker and fig, just use command:
 
-    create_containers.sh
+    sudo fig up
 
-this will create and name the containers, and the app will run in the port 8000.
 
-After this you can use the cmds: `stop_docker.sh` and run `run_docker.sh` to control the containers.
+this will build, create and name the containers, and the app will run in the port 8000.
+
+After this you can use the cmds: `sudo fig start wowa<db/app/nginx>` and run `sudo fig stop wowa<db/app/nginx>` to control the containers.
 
 **obs2**: admin user/pass (root/root)
 

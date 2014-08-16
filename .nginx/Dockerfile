@@ -28,8 +28,10 @@ RUN rm /etc/nginx/sites-enabled/default
 # Define working directory.
 WORKDIR /etc/nginx
 
+ADD ./scripts_run/ /etc/nginx/scripts_run/
+
 # Define default command.
-CMD ["nginx"]
+cmd /bin/bash /etc/nginx/scripts_run/run.sh
 
 # Expose ports.
 EXPOSE 80
