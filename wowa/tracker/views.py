@@ -11,6 +11,7 @@ from __future__ import absolute_import
 
 from django.db.models import Q
 from django.contrib import messages
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 # view imports
 from django.views.generic import DetailView
@@ -31,10 +32,18 @@ from .models import Character, Item
 from .forms import CharacterForm
 
 
-
 class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = Character
     form_class = CharacterForm
+    success_url = reverse_lazy("tracker:my_chars")
+
+
+class CharacterListView(LoginRequiredMixin, ListView):
+    model = Character
+
+    # These next two lines tell the view to index lookups by username
+    slug_field = "username"
+    slug_url_kwarg = "username"
 
 
 @login_required

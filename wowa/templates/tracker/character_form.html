@@ -5,8 +5,9 @@
 
 {% block title%}{{ block.super }} | {% trans "My Characters" %}{% endblock %}
 
+{% block account_nav_my_chars %}active{% endblock %}
 
-{% block main-container %}
+{% block account_content %}
 <form method="POST" action="{% url 'tracker:new_char' %}">
   {% csrf_token %}
   {{ form|crispy }}
