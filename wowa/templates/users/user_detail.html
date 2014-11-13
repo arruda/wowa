@@ -1,10 +1,12 @@
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 {% load avatar_tags %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}User: {{ object.username }}{% endblock %}
+{% block page-title %}{{ block.super }} | {% trans "User" %}: {{ object.username }}{% endblock %}
 
-{% block content %}
+{% block account_nav_acc %}active{% endblock %}
+{% block account_content %}
 <div class="container">
 
   <div class="row">
@@ -15,7 +17,7 @@
   </div>
 
 {% if object == request.user %}
-<!-- Action buttons -->     
+<!-- Action buttons -->
 <div class="row">
 
   <div class="col-sm-12 ">
@@ -31,4 +33,4 @@
 
 
 </div>
-{% endblock content %}
+{% endblock account_content %}

@@ -7,6 +7,9 @@
 <h1>{% trans 'My Account' %}</h1>
 
 <ul class="nav nav-tabs">
+  <li class="{% block account_nav_acc %}{% endblock %}">
+    <a href="{% url 'users:detail' request.user.username  %}">{% trans 'My Account' %}</a>
+  </li>
   <li class="{% block account_nav_my_chars %}{% endblock %}">
     <a href="{% url 'tracker:my_chars' %}">{% trans 'My Characters' %}</a>
   </li>

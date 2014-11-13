@@ -2,12 +2,12 @@
 {% load static %}{% load i18n %}
 {% load avatar_tags %}
 
-{% block title %}Members{% endblock %}
+{% block page-title %}{{ block.super }} | {% trans "Users" %}{% endblock %}
 
-{% block content %}
+{% block main-container %}
 
 <div class="container">
-    
+
   <div class="row">
     <div class="col-xs-12">
       <h2>Users</h2>
@@ -23,11 +23,11 @@
               <p class="list-group-item-text">{{ maker.tagline }}</p>
             </a>
           {% endfor %}
-        
+
       </div>
     </div>
   </div>
 
 </div>
 
-{% endblock content %}
+{% endblock main-container %}
