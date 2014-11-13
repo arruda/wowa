@@ -13,13 +13,13 @@ from django.db import models
 
 class Character(models.Model):
     """
-    An wow character
+    A wow character
     """
 
     name = models.CharField(u"Character Name", max_length=350, blank=False, null=True)
     realm = models.CharField(u"Realm", max_length=350, blank=False, null=True)
 
-    user = models.ForeignKey('auth.User', related_name=u"characters", blank=True, null=True)
+    user = models.ForeignKey('users.User', related_name=u"characters", blank=True, null=True)
 
     class Meta:
         app_label = 'tracker'
@@ -31,7 +31,7 @@ class Character(models.Model):
 
 class Item(models.Model):
     """
-    Represents a Item that is tracked
+    Represents an Item that is tracked
     """
 
     b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)

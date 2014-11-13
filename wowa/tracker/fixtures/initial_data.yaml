@@ -11,7 +11,7 @@
     password: pbkdf2_sha256$10000$ineolrJN3UPG$ZGD3nl0J99kGhL5Et4Xw8YIu90+tjHFfVETY/W5yLLk=
     user_permissions: []
     username: root
-  model: auth.user
+  model: users.user
   pk: 1
 - fields: {name: Cloudfuzzy, realm: Azralon, user: 1}
   model: tracker.character

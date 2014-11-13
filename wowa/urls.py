@@ -29,5 +29,6 @@ urlpatterns = patterns('',
     url(r'^avatar/', include('avatar.urls')),
 
     # Your stuff: custom urls go here
+    url(r'^tracker/', include('tracker.urls', namespace='tracker', app_name='tracker')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
