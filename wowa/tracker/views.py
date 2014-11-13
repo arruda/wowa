@@ -12,9 +12,18 @@ from __future__ import absolute_import
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
+# view imports
+from django.views.generic import DetailView
+from django.views.generic import RedirectView
+from django.views.generic import UpdateView
+from django.views.generic import ListView
+from django.views.generic import CreateView
 
-from annoying.decorators import render_to
+
+# Only authenticated users can access views using this.
+from braces.views import LoginRequiredMixin
+
+from django.shortcuts import get_object_or_404, redirect
 
 from allauth.account.adapter import get_adapter
 
@@ -22,8 +31,14 @@ from .models import Character, Item
 from .forms import CharacterForm
 
 
+
+class CharacterCreateView(LoginRequiredMixin, CreateView):
+    model = Character
+    form_class = CharacterForm
+
+
 @login_required
-@render_to('tracker/my_chars.html')
+# @render_to('tracker/my_chars.html')
 def my_chars(request):
     "list all characters for a user"
     characters = request.user.characters.all()
@@ -31,7 +46,7 @@ def my_chars(request):
 
 
 @login_required
-@render_to('tracker/new_char.html')
+# @render_to('tracker/new_char.html')
 def new_char(request):
     "create a character for the logged user"
 
@@ -55,7 +70,7 @@ def new_char(request):
 
 
 @login_required
-@render_to('tracker/my_chars.html')
+# @render_to('tracker/my_chars.html')
 def rm_char(request, char_id):
     "rm a character for the logged user"
     character = get_object_or_404(Character, pk=char_id)
@@ -73,7 +88,7 @@ def rm_char(request, char_id):
 
 
 @login_required
-@render_to('tracker/tracked_items.html')
+# @render_to('tracker/tracked_items.html')
 def tracked_items(request):
     "list all tracked items for this user"
 
