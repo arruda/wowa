@@ -36,10 +36,10 @@ nosetests.xml
 .pydevproject
 *.sublime-*
 .vagrant/*
-wowa/celerybeat-schedule
-wowa/celerybeat.pid
-wowa/db.sqlite
-wowa/static_root/*
+celerybeat-schedule
+celerybeat.pid
+db.sqlite
+static_root/*
 
 docs/_build/*
 docs/_static/*
