@@ -1,23 +1,30 @@
-wowadb:
-  build: .pgserver
+db:
+  build: dockers/docker-postgresql
+  volumes:
+    - ./dockers/docker-postgresql/data:/data
+    - ./dockers/docker-postgresql/log:/var/log/postgresql
+  environment:
+    - USER=wowa
+    - DB=wowa
+    - PASS=wowa
   ports:
     - "5434:5432"
-wowaapp:
-  build: .
-  volumes:
-    - .:/home/docker/proj
-  ports:
-    - "8001:8000"
-  links:
-    - wowadb:db
-wowanginx:
-  build: .nginx
-  ports:
-    - "8000:80"
-  links:
-    - wowaapp:app
-  volumes:
-    - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
-    - ./.nginx/log:/var/log/nginx
-    - ./wowa/static_root:/data/static
-    - ./wowa/media:/data/media
+# wowaapp:
+#   build: .
+#   volumes:
+#     - .:/home/docker/proj
+#   ports:
+#     - "8001:8000"
+#   links:
+#     - wowadb:db
+# wowanginx:
+#   build: .nginx
+#   ports:
+#     - "8000:80"
+#   links:
+#     - wowaapp:app
+#   volumes:
+#     - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
+#     - ./.nginx/log:/var/log/nginx
+#     - ./wowa/static_root:/data/static
+#     - ./wowa/media:/data/media

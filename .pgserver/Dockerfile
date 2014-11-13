@@ -1,4 +1,3 @@
-
 FROM ubuntu
 MAINTAINER SvenDowideit@docker.com
 

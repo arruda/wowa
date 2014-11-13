@@ -39,7 +39,7 @@ nosetests.xml
 celerybeat-schedule
 celerybeat.pid
 db.sqlite
-static_root/*
+staticfiles/*
 
 docs/_build/*
 docs/_static/*
