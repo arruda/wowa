@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block page-title %}{{ block.super }} | {% trans "User" %}: {{ object.username }}{% endblock %}
+{% block head_title %}{% trans "User" %}: {{ object.username }}{% endblock %}
 
 {% block account_nav_acc %}active{% endblock %}
 {% block account_content %}

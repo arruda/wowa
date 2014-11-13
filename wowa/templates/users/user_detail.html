@@ -3,7 +3,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block page-title %}{{ block.super }} | {% trans "User" %}: {{ object.username }}{% endblock %}
+{% block head_title %}{% trans "User" %}: {{ object.username }}{% endblock %}
 
 {% block account_nav_acc %}active{% endblock %}
 {% block account_content %}
@@ -24,14 +24,13 @@
         <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
 
         <form class="form-horizontal" method="get" action="{% url 'users:update' %}">
-            {% csrf_token %}
 
             <div id="div_id_first_name" class="form-group">
                 <label for="id_first_name" class="control-label ">
                     {% trans "First name" %}
                 </label>
                 <div class="controls ">
-                    <input disabled="true" class="textinput textInput form-control" id="id_first_name" maxlength="30" name="first_name" type="text" value="algo2" />
+                    <input disabled="true" class="textinput textInput form-control" id="id_first_name" maxlength="30" name="first_name" type="text" value="{{ user.first_name }}" />
                 </div>
             </div>
 
@@ -40,7 +39,7 @@
                    {% trans "Last name" %}
                 </label>
                 <div class="controls ">
-                    <input disabled="true" class="textinput textInput form-control" id="id_last_name" maxlength="30" name="last_name" type="text" value="legal" />
+                    <input disabled="true" class="textinput textInput form-control" id="id_last_name" maxlength="30" name="last_name" type="text" value="{{ user.last_name }}" />
                 </div>
             </div>
 
