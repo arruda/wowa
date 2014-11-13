@@ -9,11 +9,12 @@
 """
 from __future__ import absolute_import
 
+# view imports
 from django.db.models import Q
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
-# view imports
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
@@ -32,10 +33,11 @@ from .models import Character, Item
 from .forms import CharacterForm
 
 
-class CharacterCreateView(LoginRequiredMixin, CreateView):
+class CharacterCreateView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
     model = Character
     form_class = CharacterForm
     success_url = reverse_lazy("tracker:my_chars")
+    success_message = "New character %(name)s/%(realm)s was created."
 
 
 class CharacterListView(LoginRequiredMixin, ListView):
@@ -54,28 +56,28 @@ def my_chars(request):
     return {'characters': characters}
 
 
-@login_required
-# @render_to('tracker/new_char.html')
-def new_char(request):
-    "create a character for the logged user"
+# @login_required
+# # @render_to('tracker/new_char.html')
+# def new_char(request):
+#     "create a character for the logged user"
 
-    user = request.user
+#     user = request.user
 
-    if request.method == "POST":
-        form = CharacterForm(request.POST)
-        if form.is_valid():
-            new_char = form.save(commit=False)
-            new_char.user = user
-            new_char.save()
-            get_adapter().add_message(request,
-                                      messages.SUCCESS,
-                                      'tracker/messages/char_created.txt',
-                                      {'character': new_char})
+#     if request.method == "POST":
+#         form = CharacterForm(request.POST)
+#         if form.is_valid():
+#             new_char = form.save(commit=False)
+#             new_char.user = user
+#             new_char.save()
+#             get_adapter().add_message(request,
+#                                       messages.SUCCESS,
+#                                       'tracker/messages/char_created.txt',
+#                                       {'character': new_char})
 
-            return redirect('tracker:my_chars')
-    else:
-        form = CharacterForm()
-    return locals()
+#             return redirect('tracker:my_chars')
+#     else:
+#         form = CharacterForm()
+#     return locals()
 
 
 @login_required
