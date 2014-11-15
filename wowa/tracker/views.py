@@ -33,7 +33,7 @@ from .models import Character, Item
 from .forms import CharacterForm
 
 
-class CharacterCreateView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
+class CharacterCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Character
     form_class = CharacterForm
     success_url = reverse_lazy("tracker:my_chars")
