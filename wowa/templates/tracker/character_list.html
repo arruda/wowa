@@ -15,7 +15,7 @@
           <h3>{{ character }}</h3>
           <form action="{% url 'tracker:rm_char' character.pk %}" method="POST">
             {% csrf_token %}
-
+            <input hidden="true" type="submit" value="DELETE">
             <button class="btn btn-default" name='action_remove' type="submit">{% trans 'Delete' %}</button>
           </form>
         </div>

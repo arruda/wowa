@@ -10,24 +10,20 @@
 from __future__ import absolute_import
 
 # view imports
-from django.db.models import Q
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect
+from braces.views import LoginRequiredMixin
 from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
 from django.views.generic import ListView
 from django.views.generic import CreateView
+from django.views.generic import DeleteView
 
-
-# Only authenticated users can access views using this.
-from braces.views import LoginRequiredMixin
-
-from django.shortcuts import get_object_or_404, redirect
-
-from allauth.account.adapter import get_adapter
 
 from .models import Character, Item
 from .forms import CharacterForm
@@ -39,6 +35,14 @@ class CharacterCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("tracker:my_chars")
     success_message = "New character %(name)s/%(realm)s was created."
 
+    def form_valid(self, form):
+        """
+        If the form is valid, add the current user as the character user.
+        then proceed to saving the form.
+        """
+        form.user = self.request.user
+        return super(CharacterCreateView, self).form_valid(form)
+
 
 class CharacterListView(LoginRequiredMixin, ListView):
     model = Character
@@ -48,13 +52,16 @@ class CharacterListView(LoginRequiredMixin, ListView):
     slug_url_kwarg = "username"
 
 
-@login_required
-# @render_to('tracker/my_chars.html')
-def my_chars(request):
-    "list all characters for a user"
-    characters = request.user.characters.all()
-    return {'characters': characters}
+class CharacterDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Character
+    success_url = reverse_lazy("tracker:my_chars")
 
+    def get_object(self, queryset=None):
+        """ Hook to ensure character is owned by request.user. """
+        obj = super(CharacterDeleteView, self).get_object()
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
 
 # @login_required
 # # @render_to('tracker/new_char.html')

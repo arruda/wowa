@@ -13,6 +13,7 @@ from django import forms
 
 from .models import Character
 
+
 class CharacterForm(forms.ModelForm):
     """
     Form for the creation of a Character for a user
@@ -21,3 +22,9 @@ class CharacterForm(forms.ModelForm):
     class Meta:
         model = Character
         fields = ('name', 'realm',)
+
+    def save(self):
+        character = super(CharacterForm, self).save(commit=False)
+        character.user = self.user
+        character.save()
+        return character
