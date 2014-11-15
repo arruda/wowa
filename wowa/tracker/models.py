@@ -34,7 +34,7 @@ class Item(models.Model):
     Represents an Item that is tracked
     """
 
-    b_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
+    blizzard_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
     name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
 
     characters = models.ManyToManyField(Character, related_name=u"items", blank=True, null=True)
