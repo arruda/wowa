@@ -63,6 +63,22 @@ class CharacterDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             raise Http404
         return obj
 
+
+class TrackedItemsListView(LoginRequiredMixin, ListView):
+    model = Item
+    template_name = 'tracker/tracked_items_list.html'
+
+    def get_queryset(self):
+        chars = self.request.user.characters.all()
+
+        items_ids = []
+
+        for c in chars:
+            ids = c.items.all().values_list('pk', flat=True)
+            items_ids.extend(ids)
+        queryset = super(TrackedItemsListView, self).get_queryset()
+        return queryset.filter(pk__in=items_ids)
+
 # @login_required
 # # @render_to('tracker/new_char.html')
 # def new_char(request):
@@ -87,22 +103,22 @@ class CharacterDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 #     return locals()
 
 
-@login_required
-# @render_to('tracker/my_chars.html')
-def rm_char(request, char_id):
-    "rm a character for the logged user"
-    character = get_object_or_404(Character, pk=char_id)
+# @login_required
+# # @render_to('tracker/my_chars.html')
+# def rm_char(request, char_id):
+#     "rm a character for the logged user"
+#     character = get_object_or_404(Character, pk=char_id)
 
-    if request.method == "POST":
+#     if request.method == "POST":
 
-        if character.user.pk is request.user.pk:
-            character.delete()
-            get_adapter().add_message(request,
-                                      messages.SUCCESS,
-                                      'tracker/messages/char_removed.txt',
-                                      {'character': character})
+#         if character.user.pk is request.user.pk:
+#             character.delete()
+#             get_adapter().add_message(request,
+#                                       messages.SUCCESS,
+#                                       'tracker/messages/char_removed.txt',
+#                                       {'character': character})
 
-    return redirect('tracker:my_chars')
+#     return redirect('tracker:my_chars')
 
 
 @login_required
