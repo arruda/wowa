@@ -2,6 +2,8 @@
 
 {% load i18n %}
 
+{% block navbar_tracked_items %}class="active"{% endblock %}
+
 {% block page-title %}{{ block.super }} | {% trans "Tracked Items" %}{% endblock %}
 
 {% block main-container %}

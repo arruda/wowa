@@ -25,7 +25,7 @@
 
 
 
-{% block navbar-brand %}<a class="navbar-brand" href="/">WOWa</a>{% endblock %}
+{% block navbar-brand %}<a class="navbar-brand" href="{% url 'home' %}">WOWa</a>{% endblock %}
 
 {% block navbar-header %}
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,8 +36,9 @@
 {% endblock %}
 
 {% block navbar-nav %}
-<li class="active"><a href="{% url 'tracker:tracked_items' %}">Tracked Items</a></li>
-<li><a href="#search">Search Item</a></li>
+<li {% block navbar_tracked_items %}{% endblock %}><a href="{% url 'tracker:tracked_items' %}">Tracked Items</a></li>
+<li {% block navbar_search_item %}{% endblock %}><a href="#search">Search Item</a></li>
+<li {% block navbar_about %}{% endblock %}><a href="{% url 'about' %}">About</a></li>
 {% endblock %}
 
 
@@ -46,11 +47,11 @@
 <div class="nav navbar-right">
   <ul class="nav navbar-nav">
       {% if request.user.is_authenticated %}
-        <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-        <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
+        <li {% block navbar_account %}{% endblock %}><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
+        <li {% block navbar_logout %}{% endblock %}><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
       {% else %}
-        <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-        <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
+        <li {% block navbar_signup %}{% endblock %}><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+        <li {% block navbar_login %}{% endblock %}><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
       {% endif %}
   </ul>
 </div>
