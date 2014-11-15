@@ -2,7 +2,12 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block content %}
+
+{% block head_title %}{{ block.super }} | {% trans "Delete" %}{% endblock %}
+
+{% block account_nav_avatar %}active{% endblock %}
+
+{% block account_content %}
 <div class="container">
   <div class="row">
     <div class="col-xs-12">

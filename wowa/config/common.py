@@ -266,3 +266,4 @@ class Common(Configuration):
     # END LOGGING CONFIGURATION
 
     # Your common stuff: Below this line define 3rd party library settings
+    AVATAR_HASH_FILENAMES=True
