@@ -8,20 +8,11 @@
 {% block account_nav_acc %}active{% endblock %}
 {% block account_content %}
 <div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.username }}</h2>
-
-    </div>
-  </div>
-
 {% if object == request.user %}
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>{% block header %}User: {{ user.username }}{% endblock %}</h1>
+        <h1>{{ user.username }}</h1>
 
         <form class="form-horizontal" method="get" action="{% url 'users:update' %}">
 

@@ -24,6 +24,11 @@
   <li class="{% block account_nav_socialaccount_connections %}{% endblock %}">
     <a href="{{ connections_url}}">{% trans 'Connected Accounts' %}</a>
   </li>
+
+  <li class="{% block account_nav_avatar %}{% endblock %}">
+    <a href="{% url 'avatar_change' %}">{% trans 'Avatar' %}</a>
+  </li>
+
   {% endif %}
 </ul>
 {% block account_content %}
