@@ -47,4 +47,4 @@ class Item(models.Model):
         if self.name is None:
             return "#" + str(self.b_id)
         else:
-            return self.name + " (" + "#" + str(self.b_id) + ")"
+            return self.name + " (" + "#" + str(self.blizzard_id) + ")"
