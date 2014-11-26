@@ -14,7 +14,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404
 from braces.views import LoginRequiredMixin
-# from django.views.generic import DetailView
+from django.views.generic import DetailView
 # from django.views.generic import RedirectView
 # from django.views.generic import UpdateView
 from django.views.generic import ListView
@@ -75,3 +75,11 @@ class TrackedItemsListView(LoginRequiredMixin, ListView):
             items_ids.extend(ids)
         queryset = super(TrackedItemsListView, self).get_queryset()
         return queryset.filter(pk__in=items_ids)
+
+
+class TrackItemDetailView(LoginRequiredMixin, DetailView):
+    model = Item
+
+
+    # slug_field = "username"
+    # slug_url_kwarg = "username"

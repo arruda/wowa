@@ -13,11 +13,11 @@ urlpatterns = patterns('tracker.views',
     url(regex=r'^del_char/(?P<pk>\d+)/$',
         view=views.CharacterDeleteView.as_view(),
         name='rm_char'),
-    url(regex=r'^tracked/$',
+    url(regex=r'^my_items/$',
         view=views.TrackedItemsListView.as_view(),
         name='tracked_items_list'),
     url(
-        regex=r'^(?P<pk>\d+)/$',
+        regex=r'^my_items/(?P<pk>\d+)/$',
         view=views.TrackItemDetailView.as_view(),
         name='tracked_item'
     ),

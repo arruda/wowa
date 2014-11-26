@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block navbar_tracked_items %}class="active"{% endblock %}
+
+{% block page-title %}{{ block.super }} | {% trans "Tracked Item" %}: {{ object.name }}{% endblock %}
+
+{% block main-container %}
+
+    <h1>{% trans "Tracked Item" %}: {{ object.name }}</h1>
+
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>
+{% endblock %}
