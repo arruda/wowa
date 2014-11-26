@@ -4,8 +4,21 @@ from django.conf.urls import patterns, include, url
 from tracker import views
 
 urlpatterns = patterns('tracker.views',
-    url(r'^new_char/$', views.CharacterCreateView.as_view(), name='new_char'),
-    url(r'^chars/$', views.CharacterListView.as_view(), name='my_chars'),
-    url(r'^del_char/(?P<pk>\d+)/$', views.CharacterDeleteView.as_view(), name='rm_char'),
-    url(r'^tracked/$', views.TrackedItemsListView.as_view(), name='tracked_items'),
+    url(regex=r'^new_char/$',
+        view=views.CharacterCreateView.as_view(),
+        name='new_char'),
+    url(regex=r'^chars/$',
+        view=views.CharacterListView.as_view(),
+        name='my_chars'),
+    url(regex=r'^del_char/(?P<pk>\d+)/$',
+        view=views.CharacterDeleteView.as_view(),
+        name='rm_char'),
+    url(regex=r'^tracked/$',
+        view=views.TrackedItemsListView.as_view(),
+        name='tracked_items_list'),
+    url(
+        regex=r'^(?P<pk>\d+)/$',
+        view=views.TrackItemDetailView.as_view(),
+        name='tracked_item'
+    ),
 )

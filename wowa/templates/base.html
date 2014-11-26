@@ -36,7 +36,7 @@
 {% endblock %}
 
 {% block navbar-nav %}
-<li {% block navbar_tracked_items %}{% endblock %}><a href="{% url 'tracker:tracked_items' %}">Tracked Items</a></li>
+<li {% block navbar_tracked_items %}{% endblock %}><a href="{% url 'tracker:tracked_items_list' %}">Tracked Items</a></li>
 <li {% block navbar_search_item %}{% endblock %}><a href="#search">Search Item</a></li>
 <li {% block navbar_about %}{% endblock %}><a href="{% url 'about' %}">About</a></li>
 {% endblock %}
