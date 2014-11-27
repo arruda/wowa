@@ -1,10 +1,15 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% load i18n %}
 
 {% block navbar_tracked_items %}class="active"{% endblock %}
 
 {% block page-title %}{{ block.super }} | {% trans "Tracked Item" %}: {{ object }} {% endblock %}
+
+{% block 'js-imports' %}
+    <link rel="stylesheet" href="{% static "js/Chart.min.js" %}">
+{% endblock %}
 
 {% block main-container %}
 
