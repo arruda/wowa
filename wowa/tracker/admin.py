@@ -13,8 +13,11 @@ from django.contrib import admin
 
 from .models import Item
 from .models import Character
+from .models import CharacterItem
 
 
 admin.site.register(Character, admin.ModelAdmin)
 
 admin.site.register(Item, admin.ModelAdmin)
+
+admin.site.register(CharacterItem, admin.ModelAdmin)
