@@ -15,10 +15,10 @@ urlpatterns = patterns('tracker.views',
         name='rm_char'),
     url(regex=r'^my_items/$',
         view=views.TrackedItemsListView.as_view(),
-        name='tracked_items_list'),
+        name='character_items_list'),
     url(
         regex=r'^my_items/(?P<pk>\d+)/$',
         view=views.TrackItemDetailView.as_view(),
-        name='tracked_item'
+        name='character_item'
     ),
 )

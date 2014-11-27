@@ -22,7 +22,7 @@ from django.views.generic import CreateView
 from django.views.generic import DeleteView
 
 
-from .models import Character, Item
+from .models import Character, Item, CharacterItem
 from .forms import CharacterForm
 
 
@@ -62,23 +62,19 @@ class CharacterDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 
 class TrackedItemsListView(LoginRequiredMixin, ListView):
-    model = Item
-    template_name = 'tracker/tracked_items_list.html'
+    model = CharacterItem
+    template_name = 'tracker/tracked_character_items_list.html'
 
     def get_queryset(self):
-        chars = self.request.user.characters.all()
+        user_chars = self.request.user.characters.all()
 
-        items_ids = []
-
-        for c in chars:
-            ids = c.items.all().values_list('pk', flat=True)
-            items_ids.extend(ids)
         queryset = super(TrackedItemsListView, self).get_queryset()
-        return queryset.filter(pk__in=items_ids)
+        return queryset.filter(character__in=user_chars)
 
 
 class TrackItemDetailView(LoginRequiredMixin, DetailView):
-    model = Item
+    model = CharacterItem
+    template_name = 'tracker/tracked_items_list.html'
 
 
     # slug_field = "username"

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block navbar_tracked_items %}class="active"{% endblock %}
+
+{% block page-title %}{{ block.super }} | {% trans "Tracked Items" %}{% endblock %}
+
+{% block main-container %}
+
+    <h1>{% trans "Tracked Items" %}</h1>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover">
+            <th>#ID</th><th>{% trans "Character" %}</th><th>{% trans "Realm" %}</th>
+                {% for character_item in object_list %}
+                    <tr>
+                      <td> <a href="{% url 'tracker:character_item' character_item.pk %}">{{ character_item.item.blizzard_id }}</td>
+                      <td>{{ character_item.character.name }}</td>
+                      <td>{{ character_item.character.realm }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
