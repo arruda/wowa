@@ -74,7 +74,7 @@ class TrackedItemsListView(LoginRequiredMixin, ListView):
 
 class TrackItemDetailView(LoginRequiredMixin, DetailView):
     model = CharacterItem
-    template_name = 'tracker/tracked_items_list.html'
+    template_name = 'tracker/character_item_detail.html'
 
 
     # slug_field = "username"
