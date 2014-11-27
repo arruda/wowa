@@ -34,8 +34,8 @@ class CharacterItem(models.Model):
     The connection of Character and Item
     """
 
-    item = models.ForeignKey('tracker.Item')
-    character = models.ForeignKey('tracker.Character')
+    item = models.ForeignKey('tracker.Item', related_name='character_items')
+    character = models.ForeignKey('tracker.Character', related_name='character_items')
 
     class Meta:
         app_label = 'tracker'
@@ -52,10 +52,10 @@ class Item(models.Model):
     blizzard_id = models.PositiveIntegerField(u"Blizzard Item Id", blank=False, null=True)
     name = models.CharField(u"Item Name", max_length=350, blank=True, null=True)
 
-    characters_new = models.ManyToManyField(
+    characters = models.ManyToManyField(
         Character,
         through=CharacterItem,
-        related_name=u"items_new",
+        related_name=u"items",
         blank=True, null=True
     )
 
