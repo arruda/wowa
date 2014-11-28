@@ -25,16 +25,21 @@
 
 {% block jquery-docready %}
 //Chart.defaults.global.responsive = true;
+
 {% comment %}
 {% verbatim %}
-Chart.defaults.legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+Chart.defaults.legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
 {% endverbatim %}
 {% endcomment %}
-
 var ctx = $("#item_price_charge").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
 var data = {{ chart_data|safe }}
 
+var datasets = data['datasets'];
+
+{% verbatim %}
 var myNewChart = new Chart(ctx).Line(data);
+{% endverbatim %}
+
 $('#item_price_legend').html(myNewChart.generateLegend());
 {% endblock %}

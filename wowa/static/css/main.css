@@ -65,3 +65,11 @@ body {
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+#item_price_legend span{
+    padding-right: 16px;
+}
+
+#item_price_legend ul.line-legend{
+    list-style-type: none;
+}
