@@ -34,6 +34,7 @@ After this the `wowa` will start to getter data about the avarage price on that 
 
 It will generate a simple chart showing the comparison on the avarage and your prices, each day, for up to the last 30 days.
 
+For more information read more on the documentation: http://wowa.readthedocs.org/en/latest/usage.html
 
 Install:
 --------
