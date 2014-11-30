@@ -78,14 +78,12 @@ Ready to contribute? Here's how to set up `wowa` for local development.
 
    Now you can make your changes locally.
 
-6. When you're done making changes, check that your changes pass flake8 and the tests.
-But first you'll need to create a new virtualenv::
+6. When you're done making changes, check that your changes pass flake8 and the tests. But first you'll need to create a new virtualenv::
 
     $ mkvirtualenv wowa_test
     $ pip install -r requirements/test.txt
     $ make lint
     $ make coverage
-
 
 7. Commit your changes and push your branch to GitHub::
 

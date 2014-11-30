@@ -35,6 +35,6 @@ coverage:
 docs:
 	rm -f docs/wowa.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ minepybs
+	sphinx-apidoc -o docs/ wowa
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
