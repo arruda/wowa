@@ -81,3 +81,27 @@ class Item(models.Model):
             return "#" + str(self.b_id)
         else:
             return self.name + " (" + "#" + str(self.blizzard_id) + ")"
+
+
+class RealmItemPriceOnDate(models.Model):
+    """
+    Represent the informations of price for a given Item
+    in a Realm, on given a Date
+    """
+
+    realm = models.ForeignKey(
+        'tracker.Realm',
+        related_name=u"item_prices_on_date",
+        blank=False, null=True
+    )
+
+    item = models.ForeignKey(
+        'tracker.Item',
+        related_name=u"item_prices_on_date",
+        blank=False, null=True
+    )
+
+    date = models.DateField(u"Date", auto_now_add=True, blank=False, null=True)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.realm, self.item, self.date)
