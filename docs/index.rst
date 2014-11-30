@@ -14,6 +14,7 @@ Contents:
    readme
    install
    usage
+   data_analysis
    contributing
    authors
    deploy
