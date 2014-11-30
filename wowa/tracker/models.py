@@ -107,5 +107,12 @@ class RealmItemPriceOnDate(models.Model):
         blank=False, null=True
     )
 
+    avg_price = models.DecimalField(
+        u"Average Price",
+        max_digits=10,
+        decimal_places=2,
+        default="0.0"
+    )
+
     def __unicode__(self):
         return "%s %s %s" % (self.realm, self.item, self.date)
