@@ -92,13 +92,13 @@ class RealmItemPriceOnDate(models.Model):
 
     realm = models.ForeignKey(
         'tracker.Realm',
-        related_name=u"item_prices_on_date",
+        related_name=u"realm_item_prices_on_date",
         blank=False, null=True
     )
 
     item = models.ForeignKey(
         'tracker.Item',
-        related_name=u"item_prices_on_date",
+        related_name=u"realm_item_prices_on_date",
         blank=False, null=True
     )
 
@@ -114,5 +114,45 @@ class RealmItemPriceOnDate(models.Model):
         default="0.0"
     )
 
+    class Meta:
+        app_label = 'tracker'
+
     def __unicode__(self):
         return "%s %s %s" % (self.realm, self.item, self.date)
+
+
+class CharacterItemPriceOnDate(models.Model):
+    """
+    Represents the price of an Item belonging to a given character
+    on a given Date
+    """
+
+    character = models.ForeignKey(
+        'tracker.Character',
+        related_name=u"character_item_prices_on_date",
+        blank=False, null=True
+    )
+
+    item = models.ForeignKey(
+        'tracker.Item',
+        related_name=u"character_item_prices_on_date",
+        blank=False, null=True
+    )
+
+    date = models.DateField(u"Date",
+        default=timezone.now,
+        blank=False, null=True
+    )
+
+    avg_price = models.DecimalField(
+        u"Average Price",
+        max_digits=10,
+        decimal_places=2,
+        default="0.0"
+    )
+
+    class Meta:
+        app_label = 'tracker'
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.character, self.item, self.date)
