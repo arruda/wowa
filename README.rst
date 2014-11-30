@@ -25,7 +25,7 @@ About this:
 
 WOWA is a simple aplication that uses the WOW API to get info about the auction house price for some items.
 
-How dos it works:
+How Does It Works:
 ----------------
 
 The idea is to register you World of Warcraft character, then will search for an Item, and mark it as tracked.
