@@ -2,6 +2,24 @@
 wowa
 ===================================
 
+.. image:: https://badge.fury.io/py/wowa.png
+    :target: http://badge.fury.io/py/wowa
+
+.. image:: https://travis-ci.org/arruda/wowa.png?branch=master
+    :target: https://travis-ci.org/arruda/wowa
+
+.. image:: https://coveralls.io/repos/arruda/wowa/badge.png
+    :target: https://coveralls.io/r/arruda/wowa
+
+
+.. image:: https://pypip.in/d/wowa/badge.png
+    :target: https://pypi.python.org/pypi/wowa
+
+.. image:: https://readthedocs.org/projects/wowa/badge/?version=latest
+    :target: https://readthedocs.org/projects/wowa/?badge=latest
+    :alt: Documentation Status
+
+
 About this:
 -----------------------------------
 
