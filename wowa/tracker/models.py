@@ -30,7 +30,7 @@ class Character(models.Model):
     """
 
     name = models.CharField(u"Character Name", max_length=350, blank=False, null=True)
-    realm = models.CharField(u"Realm", max_length=350, blank=False, null=True)
+    realm_name = models.CharField(u"Realm", max_length=350, blank=False, null=True)
 
     user = models.ForeignKey('users.User', related_name=u"characters", blank=True, null=True)
 
