@@ -25,47 +25,20 @@ About this:
 
 WOWA is a simple aplication that uses the WOW API to get info about the auction house price for some items.
 
-Runnnig:
+How dos it works:
+----------------
+
+The idea is to register you World of Warcraft character, then will search for an Item, and mark it as tracked.
+
+After this the `wowa` will start to getter data about the avarage price on that item, and the price that you sold them in the auction house.
+
+It will generate a simple chart showing the comparison on the avarage and your prices, each day, for up to the last 30 days.
+
+
+Install:
 --------
 
-Use docker and fig to run this.
-
-So, after installing docker and fig, just use command:
-
-    sudo fig up
-
-
-this will build, create and name the containers, and the app will run in the port 8000.
-
-After this you can use the cmds: `sudo fig start wowa<db/app/nginx>` and run `sudo fig stop wowa<db/app/nginx>` to control the containers.
-
-**obs2**: admin user/pass (root/root)
-
-Dockers
--------
-
-There are 3 containers: wowadb, wowaapp and wowanginx.
-
-### wowadb
-It uses a PostgreSql docker, that runs on port 5432 (5434 on host)
-
-### wowaapp
-A container that runs the app with gunicorn on port 8000 (8001 on host)
-It is linked to wowadb to accesses the DB.
-
-Volume:
-
-* ./ -> /home/docker/proj
-
-###wowanginx
-A container that runs nginx on port 80 (8000 on host) and is linked to wowaapp to proxy_pass to gunicorn.
-
-Volume:
-
-* ./wowa/static_root -> /data/static
-* ./wowa/media -> /data/media
-* ./.nginx/log -> /var/log/nginx
-* ./.nginx/sites-enabled -> /etc/nginx/sites-enabled
+Checkout the documentation page about this: http://wowa.readthedocs.org/en/latest/install.html
 
 LICENSE
 =============
