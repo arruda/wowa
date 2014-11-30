@@ -9,6 +9,7 @@
 """
 
 from django.db import models
+from django.utils import timezone
 
 
 class Realm(models.Model):
@@ -101,7 +102,10 @@ class RealmItemPriceOnDate(models.Model):
         blank=False, null=True
     )
 
-    date = models.DateField(u"Date", auto_now_add=True, blank=False, null=True)
+    date = models.DateField(u"Date",
+        default=timezone.now,
+        blank=False, null=True
+    )
 
     def __unicode__(self):
         return "%s %s %s" % (self.realm, self.item, self.date)
