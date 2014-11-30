@@ -62,33 +62,38 @@ Ready to contribute? Here's how to set up `wowa` for local development.
 
     $ git clone git@github.com:your_name_here/wowa.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Since `wowa` uses PostgreSQL in local development and in production, you'll need to install at least `libpq` and `Python` header files. On ubuntu this can be done by::
+
+    $ sudo apt-get install libpq-dev python-dev
+
+4. Install your local copy into a `virtualenv <http://virtualenv.readthedocs.org/en/latest/>`_. Assuming you have `virtualenvwrapper <http://virtualenvwrapper.readthedocs.org/en/latest/>`_ installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv wowa
     $ cd wowa/
-    $ python setup.py develop
+    $ pip install -r requirements/local.txt
 
-4. Create a branch for local development::
+5. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox::
+6. When you're done making changes, check that your changes pass flake8 and the tests.
+But first you'll need to create a new virtualenv::
 
-    $ flake8 wowa tests
-    $ python setup.py test
-    $ tox
+    $ mkvirtualenv wowa_test
+    $ pip install -r requirements/test.txt
+    $ flake8 tests
+    $ coverage run wowa/manage.py test
 
-   To get flake8 and tox, just pip install them into your virtualenv.
 
-6. Commit your changes and push your branch to GitHub::
+7. Commit your changes and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-7. Submit a pull request through the GitHub website.
+8. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------
@@ -99,13 +104,4 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, 3.3, and 3.4, and for PyPy. Check
-   https://travis-ci.org/arruda/wowa/pull_requests
-   and make sure that the tests pass for all supported Python versions.
-
-Tips
-----
-
-To run a subset of tests::
-
-    $ python -m unittest tests.test_wowa
+3. Check https://travis-ci.org/arruda/wowa/pull_requests and make sure that the tests pass.
