@@ -83,7 +83,7 @@ But first you'll need to create a new virtualenv::
 
     $ mkvirtualenv wowa_test
     $ pip install -r requirements/test.txt
-    $ flake8 tests
+    $ flake8
     $ coverage run wowa/manage.py test
 
 
