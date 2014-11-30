@@ -8,7 +8,7 @@ db:
     - DB=wowa
     - PASS=wowa
   ports:
-    - "5434:5432"
+    - "5432:5432"
 # wowaapp:
 #   build: .
 #   volumes:

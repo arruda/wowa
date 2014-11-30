@@ -112,7 +112,7 @@ class Common(Configuration):
 
     # DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://wowa:wowa@localhost:5434/wowa')
+    DATABASES = values.DatabaseURLValue('postgres://wowa:wowa@localhost:5432/wowa')
     # END DATABASE CONFIGURATION
 
     # CACHING
