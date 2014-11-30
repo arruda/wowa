@@ -39,7 +39,7 @@ class Character(models.Model):
 
     def __unicode__(self):
 
-        return self.realm + "/" + self.name
+        return "%s / %s" % (self.realm, self.name)
 
 
 class CharacterItem(models.Model):
