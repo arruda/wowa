@@ -11,6 +11,19 @@
 from django.db import models
 
 
+class Realm(models.Model):
+    """
+    A Wow realm
+    """
+    name = models.CharField(u"Realm Name", max_length=350, blank=False, null=True)
+
+    class Meta:
+        app_label = 'tracker'
+
+    def __unicode__(self):
+        return self.name
+
+
 class Character(models.Model):
     """
     A wow character
