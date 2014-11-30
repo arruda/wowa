@@ -83,8 +83,8 @@ But first you'll need to create a new virtualenv::
 
     $ mkvirtualenv wowa_test
     $ pip install -r requirements/test.txt
-    $ flake8
-    $ coverage run wowa/manage.py test
+    $ make lint
+    $ make coverage
 
 
 7. Commit your changes and push your branch to GitHub::

@@ -5,6 +5,7 @@ omit =
     *migrations*
     *__init__.py
     *manage.py
+    *wsgi.py
 
 [report]
 exclude_lines =
