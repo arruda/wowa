@@ -116,6 +116,7 @@ class RealmItemPriceOnDate(models.Model):
 
     class Meta:
         app_label = 'tracker'
+        ordering = ['-date', ]
 
     def __unicode__(self):
         return "%s %s %s" % (self.realm, self.item, self.date)
@@ -153,6 +154,7 @@ class CharacterItemPriceOnDate(models.Model):
 
     class Meta:
         app_label = 'tracker'
+        ordering = ['-date', ]
 
     def __unicode__(self):
         return "%s %s %s" % (self.character, self.item, self.date)
