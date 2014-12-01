@@ -26,6 +26,7 @@ from django.views.generic import DeleteView
 
 
 from .models import Character, Item, CharacterItem
+from .models import CharacterItemPriceOnDate, RealmItemPriceOnDate
 from .forms import CharacterForm
 
 from .utils import JSONLazyEncoder
@@ -81,6 +82,8 @@ class TrackItemDetailView(LoginRequiredMixin, DetailView):
     model = CharacterItem
     template_name = 'tracker/character_item_detail.html'
 
+    _get_valid_days = None
+
     def get_chart_data(self):
         "return the chart's data that will be used with Chart.js"
         data = {}
@@ -91,7 +94,9 @@ class TrackItemDetailView(LoginRequiredMixin, DetailView):
 
     def get_chart_labels(self):
         "return the chart's labels"
-        return ["January", "February", "March", "April", "May", "June", "July"]
+        dates = self.get_valid_days
+        str_dates = [str(date) for date in dates]
+        return str_dates
 
     def get_chart_datasets(self):
         "the datasets used in the chart"
@@ -101,6 +106,26 @@ class TrackItemDetailView(LoginRequiredMixin, DetailView):
         datasets.append(global_item_price_dataset)
         datasets.append(char_item_price_dataset)
         return datasets
+
+    @property
+    def get_valid_days(self):
+        """
+        return the list of days (datetime) that can be ploted.
+        Since this depends on the global price of the item in that Realm,
+        then it will be the count of RealmItemPriceOnDate, up to 30 days.
+        """
+        if self._get_valid_days is None:
+            # import pdb;pdb.set_trace()
+            realm = self.object.character.realm
+            item = self.object.item
+            up_to_latest_30_days = RealmItemPriceOnDate.objects.filter(
+                realm=realm,
+                item=item
+            ).values_list('date', flat=True)[:30]
+            up_to_latest_30_days = up_to_latest_30_days.reverse()
+            self._get_valid_days = up_to_latest_30_days
+
+        return self._get_valid_days
 
     def get_chart_char_item_price_dataset(self):
         "the dataset for the character's item price"
@@ -118,12 +143,35 @@ class TrackItemDetailView(LoginRequiredMixin, DetailView):
 
     def get_chart_char_item_price_dataset_data(self):
         "Dataset's data for the character's item price"
-        return [28, 48, 40, 19, 86, 27, 90]
+
+        character = self.object.character
+        item = self.object.item
+        latest_30_prices = CharacterItemPriceOnDate.objects.filter(
+            character=character,
+            item=item
+        ).values_list('avg_price', flat=True)[:30]
+
+        float_latest_30_prices = [float(x) for x in latest_30_prices]
+
+        # if there is not enought char data, should put zeroes
+        # at the begining
+        #Here it get the num of days to append
+        num_days_to_append = len(self.get_valid_days) - len(float_latest_30_prices)
+
+        #the actual zeroes that will be appended
+        prices_to_append = [float(0.0) for x in xrange(num_days_to_append)]
+
+        #append the zeroes
+        float_latest_30_prices.extend(prices_to_append)
+
+        float_latest_30_prices.reverse()
+
+        return float_latest_30_prices
 
     def get_chart_global_item_price_dataset(self):
         "the dataset for the global item price"
         dataset = {
-            'label': _('Global Minimum Price'),
+            'label': _('Global Average Price'),
             'fillColor': "rgba(220,220,220,0.2)",
             'strokeColor': "rgba(220,220,220,1)",
             'pointColor': "rgba(220,220,220,1)",
@@ -136,7 +184,15 @@ class TrackItemDetailView(LoginRequiredMixin, DetailView):
 
     def get_chart_global_item_price_dataset_data(self):
         "Dataset's data for the global item price"
-        return [65, 59, 80, 81, 56, 55, 40]
+        realm = self.object.character.realm
+        item = self.object.item
+        latest_30_prices = RealmItemPriceOnDate.objects.filter(
+            realm=realm,
+            item=item
+        ).values_list('avg_price', flat=True)[:30]
+        float_latest_30_prices = [float(x) for x in latest_30_prices]
+        float_latest_30_prices.reverse()
+        return float_latest_30_prices
 
     def get_context_data(self, **kwargs):
         context = {}
