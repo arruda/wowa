@@ -23,16 +23,16 @@ wowa
 About this:
 -----------------------------------
 
-WOWA is a simple aplication that uses the WOW API to get info about the auction house price for some items.
+WOWA is a simple application that uses the WOW API to get info about the auction house price for some items.
 
 How Does It Works:
 ----------------
 
 The idea is to register you World of Warcraft character, then will search for an Item, and mark it as tracked.
 
-After this the `wowa` will start to getter data about the avarage price on that item, and the price that you sold them in the auction house.
+After this the `wowa` will start to getter data about the average price on that item, and the price that you sold them in the auction house.
 
-It will generate a simple chart showing the comparison on the avarage and your prices, each day, for up to the last 30 days.
+It will generate a simple chart showing the comparison on the average and your prices, each day, for up to the last 30 days.
 
 For more information read more on the documentation: http://wowa.readthedocs.org/en/latest/usage.html
 
