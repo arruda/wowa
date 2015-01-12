@@ -9,11 +9,11 @@ db:
     - "5432:5432"
 mongo:
   image: mongo
-  command: redis-server --appendonly yes
+  # command: redis-server --appendonly yes
   ports:
     - "27017:27017"
   volumes:
-    - /data
+    - /data/db
 # wowaapp:
 #   build: .
 #   volumes:
