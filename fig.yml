@@ -1,14 +1,19 @@
 db:
-  build: dockers/docker-postgresql
-  volumes:
-    - ./dockers/docker-postgresql/data:/data
-    - ./dockers/docker-postgresql/log:/var/log/postgresql
+  image: postgres:9.3
   environment:
-    - USER=wowa
-    - DB=wowa
-    - PASS=wowa
+    - POSTGRES_USER=wowa
+    - POSTGRES_PASSWORD=wowa
+  volumes:
+    - /var/lib/postgresql/data
   ports:
     - "5432:5432"
+mongo:
+  image: mongo
+  command: redis-server --appendonly yes
+  ports:
+    - "27017:27017"
+  volumes:
+    - /data
 # wowaapp:
 #   build: .
 #   volumes:
