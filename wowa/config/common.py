@@ -37,6 +37,7 @@ class Common(Configuration):
         'django.contrib.admin',
     )
     THIRD_PARTY_APPS = (
+        'django_extensions',  # extensions
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
         'allauth',  # registration

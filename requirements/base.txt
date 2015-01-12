@@ -7,6 +7,9 @@ django-secure==1.0
 django-cache-url==0.8.0
 dj-database-url==0.3.0
 
+# Extensions
+django-extensions==1.4.9
+
 # Forms
 django-braces==1.4.0
 django-crispy-forms==1.4.0
