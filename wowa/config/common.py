@@ -114,6 +114,8 @@ class Common(Configuration):
     # DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('postgres://wowa:wowa@localhost:5432/wowa')
+
+    MONGO_DB = values.Value('mongodb://localhost:27017/')
     # END DATABASE CONFIGURATION
 
     # CACHING
